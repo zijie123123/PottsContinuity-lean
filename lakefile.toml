@@ -1,0 +1,44 @@
+name = "PottsContinuity"
+version = "1.0.0"
+defaultTargets = ["PottsContinuity", "Challenge", "Solution"]
+
+[leanOptions]
+autoImplicit = false
+
+[[require]]
+name = "TauCeti"
+git = "https://github.com/TauCetiProject/TauCeti.git"
+rev = "3bed7e37f3c504a99e8c07e9f309540812a7aa90"
+
+# Mathlib last, so that its pins of shared dependencies take precedence.
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.35.0-rc3"
+
+# Vendored copy of the Jordan-Schoenflies modules used by the proof, ported to the module system.
+[[lean_lib]]
+name = "Schoenflies"
+srcDir = "vendor/schoenflies-lean"
+globs = ["Schoenflies.+"]
+# The options of the upstream schoenflies-lean lakefile (autoImplicit is not set there).
+leanOptions = { autoImplicit = true, relaxedAutoImplicit = false, maxSynthPendingDepth = 3 }
+
+# Vendored copy of the fixed-point-theorems modules used by the proof (Brouwer's fixed-point theorem).
+[[lean_lib]]
+name = "FixedPointTheorems"
+srcDir = "vendor/fixed-point-theorems"
+globs = ["FixedPointTheorems.+"]
+
+[[lean_lib]]
+name = "PottsContinuity"
+
+# Statement surface (Mathlib only; proofs are deliberately `sorry`).
+[[lean_lib]]
+name = "Challenge"
+roots = ["Challenge"]
+
+# Proved declarations; imports the proof development, never `Challenge`.
+[[lean_lib]]
+name = "Solution"
+roots = ["Solution"]

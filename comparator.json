@@ -1,0 +1,19 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "PottsContinuity.isPottsCriticalPoint_unique",
+    "PottsContinuity.isPottsInfiniteVolumeLimit_unique",
+    "PottsContinuity.isRCCriticalPoint_unique",
+    "PottsContinuity.isRCInfiniteVolumeLimit_unique",
+    "PottsContinuity.theorem_1",
+    "PottsContinuity.theorem_2",
+    "PottsContinuity.theorem_3"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ]
+}

@@ -1,0 +1,452 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "Continuity of the phase transition for planar random-cluster and Potts models with 1 <= q <= 4 (Theorems 1, 2 and 3)"
+  description: >-
+    A complete Lean 4 / Mathlib formalization of Theorems 1, 2 and 3 of Duminil-Copin, Sidoravicius
+    and Tassion (arXiv:1505.04159v1). Theorem 3: for the random-cluster model on the square lattice
+    with any real cluster weight q >= 1, at its critical point p_c, the following are equivalent:
+    the origin lies in an infinite cluster with probability 0 under the wired measure; equality of
+    the free and wired measures; infinite
+    susceptibility of the free measure; sub-exponential decay of the free one-arm probability; and
+    the RSW bound for free boundary conditions at distance n. Theorem 2: for 1 <= q <= 4 the wired
+    measure at p_c gives probability 0 to the origin lying in an infinite cluster. Theorem 1: for the q-state Potts model with q = 2, 3, 4,
+    the monochromatic Gibbs measure at beta_c gives its own colour at the origin probability exactly
+    1/q, so the phase transition is continuous. The critical points are the genuine phase-transition
+    thresholds, whose existence the theorems assert; four further theorems prove that these critical
+    points and the infinite-volume measures are unique;
+    beyond this statement surface, the development also proves p_c = sqrt(q)/(1 + sqrt q) for every
+    q >= 1 (PottsContinuity.BD12.isRCCriticalPoint_sqrt) and beta_c = log(1 + sqrt q) for every
+    integer q >= 2 (PottsContinuity.Thm1.isPottsCriticalPoint_log_sqrt); these identifications are
+    not checked by Comparator. The infinite-volume measures are limits along
+    every exhaustion of the lattice, and their existence and uniqueness are proved. The external
+    results that the paper cites and the proof uses (the value of p_c and the crossing estimates of
+    Beffara-Duminil-Copin, the contour identity of the parafermionic observable in the form used in
+    Section 4 of the paper, Theorem 4 of the paper, the Edwards-Sokal coupling, FKG and comparison
+    inequalities, the domain Markov property, planar duality and topology) are proved here or taken
+    from Mathlib; the Jordan-Schoenflies theorem
+    and Brouwer's fixed-point theorem come from vendored libraries, and circle-degree and
+    Jordan-curve facts from the Tau Ceti library. The only axioms are propext, Classical.choice and Quot.sound.
+  authors:
+    - "Zijie Zhuang"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Zijie Zhuang"
+
+repository:
+  role: "substantive-development"
+
+classification:
+  arxiv: ["math.PR", "math-ph"]
+  msc2020: ["82B20", "82B26", "82B43", "60K35"]
+
+sources:
+  - title: "Continuity of the phase transition for planar random-cluster and Potts models with 1 <= q <= 4"
+    authors:
+      - "Hugo Duminil-Copin"
+      - "Vladas Sidoravicius"
+      - "Vincent Tassion"
+    id: "arXiv:1505.04159v1"
+    type: "article"
+    location: "Theorem 1 (p. 5), Theorem 2 (p. 6) and Theorem 3 (p. 7); Theorems 1 and 2 are deduced from Theorems 3 and 4 in Section 1, Theorem 3 is proved in Section 3 and Theorem 4 in Section 4"
+    relationship: "formalizes"
+    note: >-
+      Published in Comm. Math. Phys. 349 (2017), no. 1, 47-107 (doi:10.1007/s00220-016-2759-8).
+      The statements are formalized with the representation choices listed under fidelity; the
+      proofs follow the paper, with the repairs of individual proof steps listed under fidelity.
+      The PDF used is a 66-page PDF of version 1 dated 15 May 2015 (SHA-256
+      f32525e5b96e59e854850a8db77f579d2b5c82761e00d1ce45be454df62b4ad8), checked against the TeX
+      source of version 1; the PDF that arXiv serves for version 1 is a separately generated build of
+      the same version (see paper/README.md).
+    license: "arXiv non-exclusive distribution licence (nonexclusive-distrib/1.0); not redistributed here"
+    author_endorsement: "not-contacted"
+  - title: "The self-dual point of the two-dimensional random-cluster model is critical for q >= 1"
+    authors:
+      - "Vincent Beffara"
+      - "Hugo Duminil-Copin"
+    id: "arXiv:1006.5073v2"
+    type: "article"
+    location: "Theorem 1 (p_c(q) = sqrt(q)/(1 + sqrt q)), Theorem 3 (beta_c(q) = log(1 + sqrt q) for the q-state Potts model, q >= 2), Lemma 7 (two separately wired arcs of a symmetric domain with mixed boundary conditions are joined with probability at least 1/(1+q^2); eq. (3) of the main paper) and Corollary 9 (crossing estimates at p_c; Theorem 9 of the main paper)"
+    relationship: "independently-proves"
+    note: >-
+      The main paper cites these results as [BD12a], whose bibliography entry reads "Critical point
+      and duality in planar lattice models" (2012); they were checked against arXiv:1006.5073v2,
+      where they are Theorem 1, Theorem 3, Lemma 7 and Corollary 9. Theorems 1 and 3 and Corollary 9
+      are proved here (PottsContinuity.BD12.isRCCriticalPoint_sqrt,
+      PottsContinuity.Thm1.isPottsCriticalPoint_log_sqrt and PottsContinuity/BD12/) by a different route:
+      sharpness of the phase transition by the decision-tree method of Duminil-Copin-Raoufi-Tassion,
+      crossing estimates following Koehler-Schindler-Tassion, and planar non-coexistence (Theorem 1.5
+      of Duminil-Copin-Raoufi-Tassion, by its proof). Lemma 7 is
+      proved and used only for squares with separately wired sides
+      (PottsContinuity/PlanarMixed/Square/).
+    license: "arXiv non-exclusive distribution licence; not redistributed here"
+    author_endorsement: "not-contacted"
+  - title: "Sharp phase transition for the random-cluster and Potts models via decision trees"
+    authors:
+      - "Hugo Duminil-Copin"
+      - "Aran Raoufi"
+      - "Vincent Tassion"
+    id: "arXiv:1705.03104v2"
+    type: "article"
+    location: "Theorem 1.1 (the OSSS inequality for monotonic measures), Theorem 1.2, second item (exponential decay of the one-arm probability below the critical point), and Theorem 1.5 (non-coexistence of infinite primal and dual clusters for translation-invariant positively associated measures) with Lemma 4.1 of its proof, on the square lattice"
+    relationship: "formalizes"
+    note: >-
+      Only the parts used to identify p_c are formalized (PottsContinuity/BD12/ and, for Theorem 1.5,
+      PottsContinuity.PlanarTopology.planar_noncoexistence with the PottsContinuity/PlanarTopology/DRT*
+      modules). The derivative (Russo) formula in the proof of Theorem 1.2 has the coefficient
+      J/(exp(beta J) - 1), omitting a factor exp(beta J); the formal proof uses the correct coefficient
+      J exp(beta J)/(exp(beta J) - 1), proved for every finite graph as
+      PottsContinuity.BD12.drt_russo_corrected, and the printed lower bound remains valid for
+      nonnegative covariances. An endpoint update in an exploration step is corrected
+      (PottsContinuity/BD12/SeedClusterRevealTree.lean).
+    license: "arXiv non-exclusive distribution licence; not redistributed here"
+    author_endorsement: "not-contacted"
+  - title: "Crossing probabilities for planar percolation"
+    authors:
+      - "Laurin Koehler-Schindler"
+      - "Vincent Tassion"
+    id: "arXiv:2011.04618v1"
+    type: "article"
+    location: "Theorem 1 (crossing estimates for rectangles of every aspect ratio for invariant, positively associated planar percolation measures) with Lemmas 1-5 of its proof"
+    relationship: "formalizes"
+    note: >-
+      Formalized for the wired random-cluster measure at the critical point, as needed for the
+      identification of p_c and for Theorem 9 of the main paper (PottsContinuity/BD12/,
+      PottsContinuity/PlanarTopology/).
+    license: "arXiv non-exclusive distribution licence; not redistributed here"
+    author_endorsement: "not-contacted"
+  - title: "Divergence of the correlation length for critical planar FK percolation with 1 <= q <= 4 via parafermionic observables"
+    authors:
+      - "Hugo Duminil-Copin"
+    id: "arXiv:1208.3787v2"
+    type: "article"
+    location: "Theorem 1 (for 1 <= q <= 4, the correlation length xi(p) tends to infinity as p increases to p_c(q)); the main paper attributes to this article its Theorem 4, lim (1/n) log phi^0_{p_c}[0 <-> boundary of Lambda_n] = 0"
+    relationship: "background"
+    note: >-
+      Theorem 4 of the main paper is proved here by the proof given in Section 4 of the main paper,
+      not by the original proof of this article.
+    license: "arXiv non-exclusive distribution licence; not redistributed here"
+    author_endorsement: "not-contacted"
+  - title: "Parafermionic observables and their applications to planar statistical physics models"
+    authors:
+      - "Hugo Duminil-Copin"
+    id: "Ensaios Matematicos, volume 25, Brazilian Mathematical Society, 2013"
+    type: "book"
+    location: "the vanishing of discrete contour integrals of the parafermionic observable (Chapter 6), cited as [Dum13] for Theorem 10 of the main paper; Corollary 4.23, cited by the main paper for the implication P1 => P2 (the corollary number is taken from the main paper)"
+    relationship: "background"
+    note: >-
+      The main paper states Theorem 10 and refers to this text for its proof. The formalization
+      proves the contour identity in the form used in Section 4 of the main paper (a summed identity
+      on finite boxes of the universal cover, for 1 <= q <= 4). For 1 <= q < 4 that proof is adapted
+      from the earlier FKconvergence formalization (see related_formalizations); the case q = 4, with
+      the winding observable, was developed here (chiefly PottsContinuity/Thm4/WindingCancellation.lean,
+      WindingBulk.lean, WindingVisitMass.lean, WindingDefectVisits.lean, WindingRoutingCounts.lean,
+      WindingToggle.lean, TotalWinding.lean, ExteriorWinding.lean, EndpointDefect.lean and
+      ModifiedObservableSum.lean), building on adapted FKconvergence modules. Neither
+      was compared line by line with this text. The implication P1 => P2 is proved here directly
+      (PottsContinuity.Thm3.Easy.p1_implies_p2).
+    license: "not redistributed here"
+    author_endorsement: "not-contacted"
+  - title: "Lectures on the Ising and Potts models on the hypercubic lattice"
+    authors:
+      - "Hugo Duminil-Copin"
+    id: "arXiv:1707.00520v1"
+    type: "lecture-notes"
+    location: "Sections 1.2 (domain Markov property, Section 1.2.1; Edwards-Sokal coupling, Section 1.2.2) and 1.3 (positive association and comparison between boundary conditions, Section 1.3.1; infinite-volume random-cluster measures, Section 1.3.2; uniqueness of the infinite cluster, ergodicity, and equality of the free and wired measures for all but countably many p, Section 1.3.3), and the planar duality of Sections 2.1 and 2.4"
+    relationship: "background"
+    note: >-
+      Used as the reference for standard properties of the random-cluster model that the main
+      paper takes from Grimmett's monograph "The Random-Cluster Model" (2006); all of them are
+      proved here.
+    license: "arXiv non-exclusive distribution licence; not redistributed here"
+    author_endorsement: "not-contacted"
+
+related_formalizations:
+  - id: "FKconvergence: unpublished Lean 4 development by Zijie Zhuang (2026), not publicly accessible"
+    relationship: "adapts"
+    note: >-
+      An earlier Lean 4 development by the same author on the critical planar FK (random-cluster)
+      model on the square lattice with 1 <= q < 4. It has not been published and is not publicly
+      accessible; there is no URL, release or commit that could be cited, so it is identified by its
+      project name, FKconvergence. 739 of the 3007 modules under PottsContinuity/ (about 110,000 of
+      315,000 lines) are adapted from it, and each of them says so in its header: 642 in FKC/
+      (finite FK measures on graphs, boundary conditions, comparison and finite-energy inequalities,
+      discrete domains and curves, medial graphs, the parafermionic observable and its contour
+      identities), 53 in Thm4/ (the parafermionic route to Theorem 4), 37 in PlanarMixed/ (rectangle
+      duality with mixed boundary conditions) and 7 elsewhere. 524 of them relocate modules and
+      namespaces only (declarations not used here were removed; apart from the edits of the port
+      described in the README), and 118 more also replace wrappers of
+      the SLE development by PottsContinuity/FKC/SLEWrap/; the others reuse this development's
+      carriers, extend the parameters (for example the cluster weight to the closed interval [1, 4],
+      including q = 4) or adapt individual arguments. In addition, 101 of the 191 modules adapted from
+      PottsDiscontinuity (next entry) had been adapted there, in whole or in part, from FKconvergence. The statements of the
+      seven main theorems and their 22 definitions (PottsContinuity/Frozen/) were transcribed from the
+      paper and are not taken from it.
+  - id: "https://github.com/zijie123123/PottsDiscontinuity-lean at commit 435fb57856860eda7a65c8fec9e5fb29eff2b46b"
+    relationship: "adapts"
+    note: >-
+      The author's formalization of Theorems 1.1 and 1.2 of arXiv:1611.09877 (discontinuity of the phase
+      transition for q > 4), publicly available. 191 of the 3007 modules under PottsContinuity/ (about
+      25,800 lines; 190 in PD/ and 1 in Thm4/) are adapted from its development version: finite and
+      infinite-volume FK measures, FKG and comparison inequalities, finite energy, box limits, planar
+      duality on rectangles and 16 of its definitions (PD/Defs/, not part of the statement surface
+      here). 165 of them come from files that the public repository contains at this commit (after a
+      port to the module system). The other 26 (26 of the 44 modules of PottsContinuity/PD/RCInfinite/, the Burton-Keane
+      uniqueness of the infinite cluster, about 4,300 lines) come from files of the development
+      version that the public repository does not contain, so their source is not publicly
+      accessible. All are relocated to the namespace PottsContinuity.PD, and declarations not used
+      here were removed; 101 of them had been adapted there, in whole or in part, from FKconvergence.
+      Each says so in its header. The statements of the main theorems are not taken from it. Eight
+      of the 22 definitions of the statement surface (box, squareLattice, rcOpenGraph,
+      rcFreeClusterCount, rcWiredClusterCount, rcWeight, rcProb, rcInfiniteOpenGraph) have the same
+      Lean code as the definitions of the same names in that repository's Challenge.lean (their
+      docstrings differ, and vertexBoundary, used by rcWiredClusterCount, is written differently
+      there but equivalently), and
+      IsRCInfiniteVolumeLimit uses its cylinder-event form with every exhaustion in place of boxes;
+      all were checked against this paper before being frozen. The other definitions are not taken
+      from it.
+  - id: "https://github.com/openai/math at commit fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb, directory lean/OAI/Probability/SLE"
+    relationship: "adapts"
+    note: >-
+      Three modules (PottsContinuity/FKC/SLEWrap/Geometry/: complex Jordan regions and transport of
+      the inside of a Jordan curve under the Jordan-Schoenflies homeomorphism, about 190 lines) are
+      taken from this public SLE development: the declarations used here are copied unchanged and
+      keep the namespace OAI; the files were ported to the module system and three declarations not
+      used here were omitted. The repository is licensed under the
+      Apache License 2.0. In addition, the Lean v4.34.1 compatibility edits of the two vendored
+      libraries are those of lean/patches/schoenflies-lean-lean4341.patch (SHA-256
+      4cbc255a2be785e6b617ecd61cdaf67e6d236d65a87f284380f2713670c8e350) and
+      lean/patches/fixed-point-theorems-lean4341.patch (SHA-256
+      d70872e41e80b25191538d1659c4aa3a001349b5bd16f806c9e3833a502516e5) of this repository at the
+      same commit, including their rewritten docstrings and the rename of Graph.IsBridge to
+      Graph.IsSchoenfliesBridge. Nothing else is taken from it; the statements of the main theorems and their
+      definitions are not.
+  - id: "https://github.com/alonamaloh/schoenflies-lean at commit 05a43d29cde026618777db3d4e4316204ccca237"
+    relationship: "adapts"
+    note: >-
+      Vendored library (vendor/schoenflies-lean/, Apache-2.0): the 128 modules of this
+      formalization of the Jordan-Schoenflies theorem that the proof needs, with the Lean v4.34.1
+      compatibility edits of openai/math's lean/patches/schoenflies-lean-lean4341.patch (commit
+      fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb, Apache-2.0), a port to the module system (with one
+      private definition, farSide, made public) and four proofs repaired for it; no statement is changed apart from the rename of Graph.IsBridge and its
+      lemmas to Graph.IsSchoenfliesBridge (see vendor/schoenflies-lean/PROVENANCE.md).
+  - id: "https://github.com/harfe/fixed-point-theorems-lean4 at commit 770940ddf9878cf61952ed53d910b92bca841838"
+    relationship: "adapts"
+    note: >-
+      Vendored library (vendor/fixed-point-theorems/, MIT): the 5 modules that prove Brouwer's
+      fixed-point theorem, with the Lean v4.34.1 compatibility edits of openai/math's
+      lean/patches/fixed-point-theorems-lean4341.patch (commit
+      fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb, Apache-2.0), further edits for Lean v4.35.0-rc3 and a
+      port to the module system; no statement is changed (see vendor/fixed-point-theorems/PROVENANCE.md).
+
+status:
+  scope: >-
+    Formalized: Theorems 1, 2 and 3 in full, as the Lean theorems PottsContinuity.theorem_1,
+    PottsContinuity.theorem_2 and PottsContinuity.theorem_3, together with the four uniqueness
+    theorems PottsContinuity.isRCInfiniteVolumeLimit_unique, PottsContinuity.isRCCriticalPoint_unique,
+    PottsContinuity.isPottsInfiniteVolumeLimit_unique and PottsContinuity.isPottsCriticalPoint_unique,
+    which show that the infinite-volume measures and critical points asserted to exist are unique;
+    and the intermediate results of the paper on which the proofs rely: Proposition 1 (for
+    0 < p < 1), Propositions 3 and 4,
+    Proposition 2 in the directions the proof uses (P5 implies P5a, and P5b with R = 8 implies P5),
+    Lemmas 1-8, Theorems 4 and 9, Theorem 10 in the form used in Section 4 (a summed contour identity
+    on finite boxes of the universal cover, for 1 <= q <= 4), and the value of p_c from [BD12a]; some
+    of them in corrected form (see fidelity). The identifications p_c = sqrt(q)/(1 + sqrt q) and
+    beta_c = log(1 + sqrt q) are proved in the development but are not part of the Comparator-checked
+    statement surface.
+    Not formalized: the applications stated in the introduction (Theorems 5-8) and their proofs in
+    Section 5 (including Lemmas 9 and 10), and the result for q > 4 (Proposition 5).
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+  main_results:
+    - declaration: "PottsContinuity.theorem_1"
+      file: "PottsContinuity/Frozen/Theorem1.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+    - declaration: "PottsContinuity.theorem_2"
+      file: "PottsContinuity/Frozen/Theorem2.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+    - declaration: "PottsContinuity.theorem_3"
+      file: "PottsContinuity/Frozen/Theorem3.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+    - declaration: "PottsContinuity.isRCInfiniteVolumeLimit_unique"
+      file: "PottsContinuity/Frozen/IsRCInfiniteVolumeLimitUnique.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+    - declaration: "PottsContinuity.isRCCriticalPoint_unique"
+      file: "PottsContinuity/Frozen/IsRCCriticalPointUnique.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+    - declaration: "PottsContinuity.isPottsInfiniteVolumeLimit_unique"
+      file: "PottsContinuity/Frozen/IsPottsInfiniteVolumeLimitUnique.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+    - declaration: "PottsContinuity.isPottsCriticalPoint_unique"
+      file: "PottsContinuity/Frozen/IsPottsCriticalPointUnique.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+
+automation:
+  methods:
+    - method: "agent"
+      models:
+        - "claude-opus-5-5"
+        - "claude-sonnet (version not recorded)"
+        - "gpt-6-luna"
+        - "gpt-6.1-sol"
+      framework: "Claude Code (orchestrator) with OpenAI Codex CLI proof workers, Claude Sonnet reviewer agents and Claude Opus agents for extracting the source dependency graph"
+      tool_setup: >-
+        Orchestrator-worker workflow based on the LeanAutoformalizationSkills repository
+        (https://github.com/scottnarmstrong/LeanAutoformalizationSkills). The statements of the
+        seven main theorems and of their 22 definitions were transcribed from the paper, audited by
+        two independent reviewer agents, approved by the author and frozen before any proof work; a
+        source-level proof dependency graph was extracted from the paper and reviewed; proof workers
+        (up to about fifteen in parallel, on disjoint directories) proved graph nodes below the
+        frozen statements; each main theorem received an independent agent audit after its proof was
+        assembled (statement fidelity, proof assembly, axioms). Builds used local Lean/Lake.
+      cost:
+        wall_time: "about two days of agent work (2026-10-19 to 2026-10-20), plus release preparation"
+        spend_usd: "not tracked"
+        hardware: "one local machine (18 cores, 64 GB RAM) and model APIs"
+      prompting_notes: >-
+        Each worker received a bounded brief: one target, the files it owns, the allowed
+        dependencies, the validation commands and a stop condition. Frozen statements could not be
+        changed; a worker that found a step of the source wrong had to stop and report, and the
+        orchestrator ruled on a repaired route (see fidelity).
+  spend_usd: "not tracked"
+  notes: >-
+    The author directed the work, approved the exact Lean statements and the representation choices
+    listed in the README, and decided all scope questions. Proof search, proof writing and reviews
+    were done by AI agents; the Lean kernel (and, for the submission, Comparator with independent
+    kernels) checks the result.
+
+fidelity:
+  divergences: >-
+    Representation choices (approved before proving; see the README): finite volumes are subgraphs
+    of Z^2 induced by finite vertex sets, with the vertex boundary taken literally and the Potts
+    Hamiltonian counting the edges that meet the finite volume; infinite-volume measures are limits
+    along every increasing exhaustion of Z^2 by finite vertex sets, with weak convergence expressed as
+    convergence of all finite-dimensional cylinder probabilities, and their existence is proved; the
+    critical points p_c and beta_c are the genuine thresholds defined by the phase transition; each
+    theorem asserts the existence of the critical point and of the infinite-volume measures with the
+    stated properties, and four separate theorems prove that these objects are unique; Potts colours
+    are Fin q, inverse temperatures range over beta >= 0, and random-cluster boundary conditions are
+    Fin 2 (0 free, 1 wired); P3 is a sum in [0, infinity]; P4 uses Real.log of a positive
+    probability; in P5 the rectangle [0, alpha n] x [0, n] is the set of lattice points with first
+    coordinate between 0 and floor(alpha n), the outer free rectangle has margin exactly n, and open
+    paths need not be self-avoiding. Intermediate statements formalized in corrected or partial form
+    (Theorems 1-3 are unaffected): Theorem 10 (cited from [Dum13]) only in the summed form used in
+    Section 4, on finite boxes of the universal cover (for 1 <= q < 4 with the parafermionic
+    observable, for q = 4 with the winding observable), not for general Dobrushin domains;
+    Proposition 2 only in the directions used; P5a for n >= 2 (for
+    n = 1 its annulus is empty and the printed bound fails); the second alternative of Proposition 3
+    as exp(-c n^beta) with some c > 0 (the printed exp(-n^alpha) can fail at small n), stated as a
+    disjunction (the exclusivity of the two alternatives is not formalized) and proved with the
+    inputs of its proof (the recurrence of Lemma 4 and a reflected-FKG construction) as hypotheses,
+    which the proof of Theorem 3 supplies
+    (PottsContinuity.RSW.selfDual_dualityP_corrected_of_induction1_reflectedFKG); Proposition 4
+    with the hypothesis exp(-c_0 n^alpha), proved with the touching estimate of Lemma 6 as a
+    hypothesis, which the proof of Theorem 3 supplies
+    (PottsContinuity.Thm3.Prop4.dualityQ_corrected_of_touch); Lemma 7 with the hypothesis
+    exp(-c_0 n^alpha), proved with the touching estimate of Lemma 6 as a hypothesis
+    (PottsContinuity.Thm3.Prop4.evenSquarePairKernel_of_touch); Proposition 1 (the domain Markov
+    property) for 0 < p < 1 rather than p in [0, 1]; Lemma 6 with the constant
+    1/(20 m^2 n^2) instead of 1/(5 m^2 n^2) (the printed constant is not formalized in this release,
+    and whether it holds in general is not settled here; all uses of Lemma 6 need only a polynomial
+    bound); the estimate phi^0[u <-> v in D] >= (1 - 4 n^(1+eps) exp(-n^(alpha eps))) phi^0[E] in the
+    proof of Lemma 7 (p. 36, unnumbered in the printed paper) is not formalized in this form: the
+    proof uses phi^1_{Lambda_n}[tube crossing] * phi^0[E] <= phi^0[u <-> v in D] for a tube D around
+    the segment from u to v (PottsContinuity.Thm3.Prop4.between_trace_core_probability_mul_le_confined)
+    and a lower bound 1/2 on the wired tube-crossing probability for all large n
+    (PottsContinuity.Thm3.Prop4.selfDual_wired_box_strict_core_uniform_ge_half);
+    eq. (3) in the form of [BD12a, Lemma 7] and of its uses in the
+    paper (the two separately wired sides of a square are joined), not the printed C_h(Lambda_n)
+    between the free sides; it is stated for squares with separately
+    wired sides. Repairs of proof steps, including: in the proof of Lemma 4 the deduction of the
+    dual circuits F_n from the connection events of eq. (15) fails for the formal definitions (a
+    configuration with n = 3 was found during the development), and the three connection events are
+    replaced by decreasing primal-blocking events that keep the bound (1+q^2)^(-3); in the proof of
+    Lemma 6 the number of candidate vertices (lattice points of S(n, nm^2, theta)) is at most
+    (n+1)(2nm^2+1), with equality for theta = 0, rather than n(2nm^2+1), and the
+    half-height bound is proved for the infinite tilted strip with an exactly self-dual carrier and
+    an almost-sure cover by fully open columns; in the proof of Lemma 7 the covering step before the estimate on p. 36 uses integer radii
+    (with the real radius n^eps the printed covering statement fails for some configurations, found
+    during the development; the configuration is not included in this repository);
+    the proof of Proposition 3 chains fifteen translated events but uses the exponent 1/14, and the
+    formal proof uses an arbitrary positive gluing power; the Edwards-Sokal identity on p. 7 lacks
+    the factor 1 - 1/q, and the proof uses mu[sigma_0 = i] = 1/q + (1 - 1/q) phi^1[0 <-> infinity];
+    in the final induction of Proposition 4 the base rate is a minimum rather than the printed
+    maximum; in the cited sharpness proof of Duminil-Copin-Raoufi-Tassion the Russo coefficient
+    lacks a factor exp(beta J) and an endpoint update is misprinted, and the corrected forms are
+    used; implicit steps are proved (limit passages from finite to infinite volume, rounding and margins in
+    Section 3, planar-topology facts, a reversed inequality in the final computation of Lemma 1).
+
+review:
+  status: "agent-reviewed"
+  reviewers:
+    - "independent Claude Sonnet reviewer agents (statement audits, dependency-graph reviews, final audits of each main theorem)"
+  notes: >-
+    Two reviewer agents compared every frozen definition and theorem statement with the paper
+    (definition and declaration fidelity, no excess hypotheses) before the author approved them;
+    the source dependency graph was reviewed slice by slice and globally, and its amendments for the
+    repaired proof steps were reviewed independently; each main theorem was audited after its proof
+    was assembled (exact statement, proof assembly only, axioms). No human mathematician has
+    refereed the formal development.
+
+alignment:
+  namespace: "PottsContinuity"
+  statements:
+    - source: "Theorem 1"
+      lean: "PottsContinuity.theorem_1"
+      module: "PottsContinuity.Frozen.Theorem1"
+      status: "proved"
+      note: "q in {2, 3, 4}; one critical inverse temperature for all colours; Gibbs measures as limits along every exhaustion."
+    - source: "Theorem 2"
+      lean: "PottsContinuity.theorem_2"
+      module: "PottsContinuity.Frozen.Theorem2"
+      status: "proved"
+      note: "Every real q in [1, 4]; the genuine critical point and the wired infinite-volume measure."
+    - source: "Theorem 3"
+      lean: "PottsContinuity.theorem_3"
+      module: "PottsContinuity.Frozen.Theorem3"
+      status: "proved"
+      note: "Every real q >= 1; one List.TFAE of P1-P5 with the lattice rounding of P5 described in the docstring."
+    - source: "well-definedness of the random-cluster infinite-volume measures phi^0, phi^1 (implicit in the paper's notation, pp. 5-6)"
+      lean: "PottsContinuity.isRCInfiniteVolumeLimit_unique"
+      module: "PottsContinuity.Frozen.IsRCInfiniteVolumeLimitUnique"
+      status: "proved"
+      note: "Makes the existential formulation of Theorems 2 and 3 pick out the unique measures."
+    - source: "well-definedness of p_c(q) (implicit in the paper's notation, p. 6)"
+      lean: "PottsContinuity.isRCCriticalPoint_unique"
+      module: "PottsContinuity.Frozen.IsRCCriticalPointUnique"
+      status: "proved"
+      note: "Makes the existential formulation of Theorems 2 and 3 pick out the unique critical point."
+    - source: "well-definedness of the Potts Gibbs measures with monochromatic boundary conditions (p. 4)"
+      lean: "PottsContinuity.isPottsInfiniteVolumeLimit_unique"
+      module: "PottsContinuity.Frozen.IsPottsInfiniteVolumeLimitUnique"
+      status: "proved"
+      note: "Makes the existential formulation of Theorem 1 pick out the unique measures."
+    - source: "well-definedness of beta_c(q) (p. 4)"
+      lean: "PottsContinuity.isPottsCriticalPoint_unique"
+      module: "PottsContinuity.Frozen.IsPottsCriticalPointUnique"
+      status: "proved"
+      note: "Makes the existential formulation of Theorem 1 pick out the unique critical inverse temperature."
+
+acknowledgements: >-
+  Mathlib; Tau Ceti (https://github.com/TauCetiProject/TauCeti, pinned dependency, circle degree and
+  Jordan curves); the SLE development of openai/math (https://github.com/openai/math, Apache-2.0:
+  three modules, and the compatibility patches of the two vendored libraries); schoenflies-lean by Alvaro Begue (https://github.com/alonamaloh/schoenflies-lean,
+  Jordan-Schoenflies theorem, Apache-2.0, vendored); fixed-point-theorems by harfe
+  (https://github.com/harfe/fixed-point-theorems-lean4, Brouwer's fixed-point theorem, MIT,
+  vendored); the LeanAutoformalizationSkills repository; the Palomar submission template.
