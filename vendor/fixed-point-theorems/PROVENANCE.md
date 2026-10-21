@@ -3,8 +3,9 @@
 The proof uses Brouwer's fixed-point theorem (`brouwer_fixed_point`). It is applied in
 `PottsContinuity/PD/Duality/RectanglePathIntersection.lean` and
 `PottsContinuity/FKC/Curves/RectanglePathIntersection.lean` to show that two crossing paths of a
-rectangle intersect. Mathlib v4.35.0-rc3 does not contain this theorem, so the five modules of
-<https://github.com/harfe/fixed-point-theorems-lean4> that prove it are vendored here.
+rectangle intersect. Mathlib (commit `b63f6e8`, toolchain v4.35.0-rc3) does not contain this
+theorem, so the five modules of <https://github.com/harfe/fixed-point-theorems-lean4> that prove it
+are vendored here.
 
 - Upstream repository: https://github.com/harfe/fixed-point-theorems-lean4
 - Upstream commit: `770940ddf9878cf61952ed53d910b92bca841838`
@@ -18,7 +19,8 @@ Changes relative to the upstream commit (no change to any statement); the files 
 to the vendored copy in https://github.com/zijie123123/PottsDiscontinuity-lean:
 
 1. compatibility edits for recent Lean and Mathlib (deprecated names, `import Mathlib`, proof
-   repairs), first for Lean v4.34.1 by openai/math's patch (see below) and then for Lean v4.35.0-rc3 / Mathlib v4.35.0-rc3;
+   repairs), first for Lean v4.34.1 by openai/math's patch (see below) and then for Lean v4.35.0-rc3 / Mathlib v4.35.0-rc3
+   (the later move to Mathlib commit `b63f6e8` required no further change);
 2. a mechanical port to the Lean module system (`module`, `public import`,
    `@[expose] public section`), required because every Lean file in a Palomar submission must be a
    module.

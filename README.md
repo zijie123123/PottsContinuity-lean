@@ -292,8 +292,10 @@ printed numbers.
 
 ## Building and checking
 
-Requirements: [elan](https://github.com/leanprover/elan). The toolchain is Lean `v4.35.0-rc3` with
-Mathlib `v4.35.0-rc3`.
+Requirements: [elan](https://github.com/leanprover/elan). The toolchain is Lean `v4.35.0-rc3`.
+Mathlib is pinned to master commit `b63f6e8a68d220e3b3bc4f3792bb53650d375f24` (toolchain
+`v4.35.0-rc3`, 38 commits after the `v4.35.0-rc3` tag), the revision that the pinned Tau Ceti commit
+itself pins, so that `lake-manifest.json` keeps every dependency of Tau Ceti at Tau Ceti's own pin.
 
 ```bash
 lake exe cache get        # Mathlib build cache
@@ -355,7 +357,8 @@ header, and `formalization.yaml` records them under `related_formalizations`:
   `Graph.IsSchoenfliesBridge`.
 
 The development was carried out on Lean v4.34.1 and ported for this release to Lean
-v4.35.0-rc3 / Mathlib v4.35.0-rc3 and the Lean module system. Before the port, a cleanup removed
+v4.35.0-rc3 (Mathlib first at the `v4.35.0-rc3` tag, then at Tau Ceti's pin `b63f6e8`, a move that
+needed no source change) and the Lean module system. Before the port, a cleanup removed
 modules unreachable from the main theorems and unused declarations in many of the others (some
 modules still contain declarations that the main theorems do not use). The port changed no statement of the main theorems or of
 their 22 definitions: their text is identical up to the namespace prefix

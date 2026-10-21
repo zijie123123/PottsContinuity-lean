@@ -28,7 +28,8 @@ Changes relative to the upstream commit (no change to any statement apart from t
    `Graph.deleteVerts_isLink` instead (`Schoenflies/Graph/TwoConnected.lean`,
    `Schoenflies/Graph/Tree.lean`, `Schoenflies/Graph/Relabel.lean`, `Schoenflies/InitialPair.lean`).
 
-The move from Lean v4.34.1 to Lean v4.35.0-rc3 / Mathlib v4.35.0-rc3 required no further change.
+The move from Lean v4.34.1 to Lean v4.35.0-rc3 / Mathlib v4.35.0-rc3, and the later move to Mathlib
+commit `b63f6e8` (the revision pinned by Tau Ceti), required no further change.
 
 The library is built with the options of the upstream lakefile (`relaxedAutoImplicit = false`,
 `maxSynthPendingDepth = 3`; `autoImplicit` left at its default, `true`), set for the

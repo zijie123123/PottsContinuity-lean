@@ -10,11 +10,13 @@ name = "TauCeti"
 git = "https://github.com/TauCetiProject/TauCeti.git"
 rev = "3bed7e37f3c504a99e8c07e9f309540812a7aa90"
 
-# Mathlib last, so that its pins of shared dependencies take precedence.
+# Mathlib at exactly the commit that the TauCeti revision above pins in its own manifest
+# (a master commit on toolchain v4.35.0-rc3, 38 commits after the v4.35.0-rc3 tag), so that the
+# resolved manifest keeps every dependency TauCeti pins unchanged.
 [[require]]
 name = "mathlib"
 git = "https://github.com/leanprover-community/mathlib4.git"
-rev = "v4.35.0-rc3"
+rev = "b63f6e8a68d220e3b3bc4f3792bb53650d375f24"
 
 # Vendored copy of the Jordan-Schoenflies modules used by the proof, ported to the module system.
 [[lean_lib]]
